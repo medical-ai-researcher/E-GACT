@@ -74,7 +74,7 @@ For researchers wishing to clone and run this framework on local workstations or
 Ensure you have Python 3.8+ installed. Install the necessary dependencies:
 ```bash
 pip install torch torch-geometric faiss-cpu scikit-learn pandas lightgbm ucimlrepo shap matplotlib seaborn
-
+```
 ### 2. Using E-GACT on Custom Tabular Data
 The modular PyTorch design allows for straightforward integration into custom clinical datasets:
 ```bash
@@ -103,5 +103,5 @@ edge_index = build_faiss_hnsw_graph(z_embeddings, k=5, is_inductive=False)
 # 4. GNN Aggregation & Hybrid Prediction
 # h: Neighborhood profile, z_scl: Contrastive projection, logits: Final predictions
 h, z_scl, logits = model.gnn_forward(z_embeddings, edge_index)
-
+```
 
