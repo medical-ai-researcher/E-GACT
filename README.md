@@ -74,3 +74,34 @@ For researchers wishing to clone and run this framework on local workstations or
 Ensure you have Python 3.8+ installed. Install the necessary dependencies:
 ```bash
 pip install torch torch-geometric faiss-cpu scikit-learn pandas lightgbm ucimlrepo shap matplotlib seaborn
+
+### 2. Using E-GACT on Custom Tabular Data
+The modular PyTorch design allows for straightforward integration into custom clinical datasets:
+```bash
+import torch
+import torch.nn.functional as F
+from models.egact import EGACT, build_faiss_hnsw_graph
+
+# 1. Initialize the E-GACT Model (0.45M Params)
+model = EGACT(
+    num_cont=15,          # Number of continuous clinical features
+    cat_dims=[4, 2, 7],   # Vocabulary sizes of categorical features
+    d_model=32,           # Latent dimension size
+    n_heads=4             # Attention heads
+)
+
+# Dummy Patient Data (Batch of 256 patients)
+x_cont = torch.randn(256, 15) 
+x_cat = torch.randint(0, 2, (256, 3))
+
+# 2. Intra-Patient Projection (Extract Latent Z)
+z_embeddings = model.get_z_embeddings(x_cont, x_cat)
+
+# 3. Inter-Patient Topology (Build Dynamic FAISS Graph in O(N log N))
+edge_index = build_faiss_hnsw_graph(z_embeddings, k=5, is_inductive=False)
+
+# 4. GNN Aggregation & Hybrid Prediction
+# h: Neighborhood profile, z_scl: Contrastive projection, logits: Final predictions
+h, z_scl, logits = model.gnn_forward(z_embeddings, edge_index)
+
+
