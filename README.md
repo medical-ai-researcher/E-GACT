@@ -104,4 +104,9 @@ edge_index = build_faiss_hnsw_graph(z_embeddings, k=5, is_inductive=False)
 # h: Neighborhood profile, z_scl: Contrastive projection, logits: Final predictions
 h, z_scl, logits = model.gnn_forward(z_embeddings, edge_index)
 ```
+🔍 Clinical Explainability (XAI)
+E-GACT strictly avoids the "black-box" paradigm. However, computing SHAP values in a Graph Neural Network is inherently complex due to neighborhood contamination (Message Passing). To resolve this, we introduce the Subgraph Freezing Approach.
+The provided pipeline autonomously generates and saves high-resolution PDF graphics for:
+t-SNE Latent Space Visualizations: Demonstrating how the Supervised Contrastive Loss (SCL) mathematically forces diabetic (red) and healthy (green) patient profiles into distinct topological manifolds.
+SHAP Feature Attributions: Highlighting exactly which physiological factors (e.g., BMI, Age, Prior Admissions) drove a specific patient into the high-risk category, providing clinically actionable insights.
 
