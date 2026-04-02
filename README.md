@@ -14,9 +14,24 @@
 
 ---
 
+## ⚡ Zero-Click Reproducibility (Reviewer Guide)
+
+We deeply respect the time of academic peer-reviewers. To facilitate a seamless and transparent review process, we provide an automated, **"Zero-Click" Universal Data Pipeline**. 
+- No Google Drive mounting required.
+- No API keys, credentials, or manual dataset downloads needed.
+
+**Instructions:**
+1. Open our official interactive Notebook via Google Colab:  
+   [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1vxQ1wFkJnOshUxagfWYLANFJMttfIX-D)
+2. Ensure the Hardware Accelerator is set to **T4 GPU** (`Runtime -> Change runtime type`).
+3. Click **`Runtime -> Run All`**.
+4. The script will autonomously fetch the raw clinical cohorts, perform strictly inductive leakage-free graph construction, train the E-GACT architecture, and output the ROC-AUC benchmarks alongside high-resolution Explainable AI (XAI) figures.
+
+---
+
 ## 📖 Overview
 
-Predicting Type 2 Diabetes Mellitus (T2DM) and associated clinical outcomes from tabular Electronic Health Records (EHR) is critical for early clinical intervention. However, current Deep Tabular Models (e.g., TabNet, FT-Transformer) chronically underperform against tree-based ensembles on noisy clinical datasets, and fail to scale on massive population-level cohorts due to $\mathcal{O}(N^2)$ attention complexities. Furthermore, standard algorithms evaluate patients as Independent and Identically Distributed (I.I.D.) instances, neglecting the fundamental clinical paradigm of **Case-Based Reasoning**.
+Predicting Type 2 Diabetes Mellitus (T2DM) and associated clinical outcomes from tabular Electronic Health Records (EHR) is critical for early clinical intervention. However, current Deep Tabular Models chronically underperform against tree-based ensembles on noisy clinical datasets, and fail to scale on massive population-level cohorts due to $\mathcal{O}(N^2)$ attention complexities. Furthermore, standard algorithms evaluate patients as Independent and Identically Distributed (I.I.D.) instances, neglecting the fundamental clinical paradigm of **Case-Based Reasoning**.
 
 **E-GACT** addresses these methodological bottlenecks by integrating:
 1. **Lightweight Tabular Transformer:** For non-linear, intra-patient feature projection.
@@ -30,7 +45,7 @@ Predicting Type 2 Diabetes Mellitus (T2DM) and associated clinical outcomes from
 ## 🏗️ Architecture
 
 <p align="center">
-  <img src="E-GACT Architecture.jpg" width="95%" alt="E-GACT Architecture Diagram">
+  <img src="fig1_architecture.jpg" width="95%" alt="E-GACT Architecture Diagram">
   <br><em>Figure 1: Overall workflow of the strictly inductive, leakage-free E-GACT architecture.</em>
 </p>
 
@@ -50,28 +65,13 @@ To demonstrate algorithmic robustness and scalability across varying modalities,
 
 ---
 
-## ⚡ Reproducibility Pipeline (Reviewer Guide)
-
-To facilitate a seamless and transparent peer-review process, we provide an automated, **"Zero-Click" Universal Data Pipeline**. 
-- No Google Drive mounting required.
-- No API keys or credentials needed.
-- No manual dataset downloads required.
-
-**Instructions:**
-1. Open our official interactive Notebook via Google Colab:  
-   [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1vxQ1wFkJnOshUxagfWYLANFJMttfIX-D)
-2. Ensure the Hardware Accelerator is set to **T4 GPU** (`Runtime -> Change runtime type`).
-3. Click **`Runtime -> Run All`**.
-4. The script will autonomously fetch the raw `.XPT` and `.csv` files from academic mirrors, perform strictly inductive leakage-free graph construction, train the E-GACT architecture, and output the ROC-AUC benchmarks alongside high-resolution Explainable AI (XAI) figures.
-
----
-
 ## 🛠️ Local Installation & Usage
 
 For researchers wishing to clone and run this framework on local workstations or Edge devices:
 
 ### 1. Requirements
 Ensure you have Python 3.8+ installed. Install the necessary dependencies:
+
 ```bash
 pip install torch torch-geometric faiss-cpu scikit-learn pandas lightgbm ucimlrepo shap matplotlib seaborn
 ```
