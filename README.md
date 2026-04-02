@@ -45,7 +45,7 @@ Predicting Type 2 Diabetes Mellitus (T2DM) and associated clinical outcomes from
 ## 🏗️ Architecture
 
 <p align="center">
-  <img src="fig1_architecture.jpg" width="95%" alt="E-GACT Architecture Diagram">
+  <img src="E-GACT Architecture.jpg" width="95%" alt="E-GACT Architecture Diagram">
   <br><em>Figure 1: Overall workflow of the strictly inductive, leakage-free E-GACT architecture.</em>
 </p>
 
