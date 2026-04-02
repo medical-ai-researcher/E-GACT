@@ -77,7 +77,7 @@ pip install torch torch-geometric faiss-cpu scikit-learn pandas lightgbm ucimlre
 ```
 ### 2. Using E-GACT on Custom Tabular Data
 The modular PyTorch design allows for straightforward integration into custom clinical datasets:
-```bash
+```python
 import torch
 import torch.nn.functional as F
 from models.egact import EGACT, build_faiss_hnsw_graph
@@ -116,7 +116,7 @@ SHAP Feature Attributions: Highlighting exactly which physiological factors (e.g
 ## 📝 Citation
 
 If you find this codebase or methodology useful in your research, please consider citing our paper:
-```bash
+```bibtex
 @article{egact_2026,
   title={Resource-Efficient Graph-Aware Contrastive Transformer (E-GACT) for Early Diabetes Risk Prediction: Bridging Algorithmic Topology and Clinical Explainability},
   author={Anonymous Authors},
