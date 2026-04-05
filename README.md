@@ -57,7 +57,7 @@ To demonstrate algorithmic robustness and scalability across varying modalities,
 
 | Dataset | Modality | Size (Patients) | Focus Area | Target Prediction | E-GACT (ROC-AUC) |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **NHANES (2017-2018)** | Clinical Lab + Demographics | ~6,000 | Physiological Signals | T2DM (HbA1c $\geq$ 6.5) | **0.816** |
+| **[NHANES (2017-2018)](https://wwwn.cdc.gov/nchs/nhanes/continuousnhanes/default.aspx?BeginYear=2017)** | Clinical Lab + Demographics | ~6,000 | Physiological Signals | T2DM (HbA1c $\geq$ 6.5) | **0.816** |
 | **130-US Hospitals** | Electronic Health Records (EHR)| ~101,000 | Case-Based Reasoning | Readmission Risk | **0.662** |
 | **CDC BRFSS (2015)** | Population Survey | ~50,000* | Edge AI Scalability | T2DM (Imbalanced) | **0.832** |
 
