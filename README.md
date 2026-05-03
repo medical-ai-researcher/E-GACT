@@ -6,11 +6,11 @@
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
   <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.8+-blue.svg" alt="Python 3.8+"></a>
   <a href="https://pytorch.org/"><img src="https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=flat&logo=PyTorch&logoColor=white" alt="PyTorch"></a>
-  <a href="#"><img src="https://img.shields.io/badge/Paper-IEEE_JBHI_Submission-green.svg" alt="Paper"></a>
+  <a href="#"><img src="https://img.shields.io/badge/Paper-Artificial Intelligence in Medicine_Submission-green.svg" alt="Paper"></a>
 </p>
 
 > **Official Code Repository for the paper:**  
-> *"Resource-Efficient Graph-Aware Contrastive Transformer (E-GACT) for Early Diabetes Risk Prediction: Bridging Algorithmic Topology and Clinical Explainability"* (Submitted to IEEE Journal of Biomedical and Health Informatics - JBHI).
+> *"Resource-Efficient Graph-Aware Contrastive Transformer (E-GACT) for Early Diabetes Risk Prediction: Bridging Algorithmic Topology and Clinical Explainability"* (Submitted to Artificial Intelligence in Medicine - AIM).
 
 ---
 
@@ -122,7 +122,7 @@ If you find this codebase or methodology useful in your research, please conside
 @article{egact_2026,
   title={Resource-Efficient Graph-Aware Contrastive Transformer (E-GACT) for Early Diabetes Risk Prediction: Bridging Algorithmic Topology and Clinical Explainability},
   author={Anonymous Authors},
-  journal={IEEE Journal of Biomedical and Health Informatics (Submitted)},
+  journal={Artificial Intelligence in Medicine (Submitted)},
   year={2026}
 }
 ```
