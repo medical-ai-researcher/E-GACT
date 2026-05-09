@@ -22,7 +22,7 @@ We deeply respect the time of academic peer-reviewers. To facilitate a seamless 
 
 **Instructions:**
 1. Open our official interactive Notebook via Google Colab:  
-   [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1vxQ1wFkJnOshUxagfWYLANFJMttfIX-D)
+   [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1AroQ5a6Il4cyYqf21RW21rxwGuhp4wYB)
 2. Ensure the Hardware Accelerator is set to **T4 GPU** (`Runtime -> Change runtime type`).
 3. Click **`Runtime -> Run All`**.
 4. The script will autonomously fetch the raw clinical cohorts, perform strictly inductive leakage-free graph construction, train the E-GACT architecture, and output the ROC-AUC benchmarks alongside high-resolution Explainable AI (XAI) figures.
