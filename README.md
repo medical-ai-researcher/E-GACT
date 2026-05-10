@@ -25,7 +25,9 @@ We deeply respect the time of academic peer-reviewers. To facilitate a seamless 
    [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1AroQ5a6Il4cyYqf21RW21rxwGuhp4wYB)
 2. Ensure the Hardware Accelerator is set to **T4 GPU** (`Runtime -> Change runtime type`).
 3. Click **`Runtime -> Run All`**.
-4. The script will autonomously fetch the raw clinical cohorts, perform strictly inductive leakage-free graph construction, train the E-GACT architecture, and output the ROC-AUC benchmarks alongside high-resolution Explainable AI (XAI) figures.
+4. The script will autonomously fetch the raw clinical cohorts, perform strictly inductive leakage-free graph construction, train the E-GACT architecture, compute Neighbourhood Influence Scores (NIS), and output the ROC-AUC benchmarks alongside high-resolution Explainable AI (XAI) figures.
+
+> **📝 Editorial Note on Colab Constraints:** The results reported in the main manuscript (Tables 2 & 3) are derived from a rigorous 5-fold stratified cross-validation on a dedicated high-resource cluster (RTX 4090). To satisfy Colab's free-tier GPU time limits ($\leq 30$ min) and RAM constraints (15GB), this reproducibility notebook utilises a single 80/20 stratified split and reduces the FAISS HNSW inference parameter to $M=16$ (instead of $M=32$). Results obtained here closely approximate, but may marginally differ from, the tabled 5-fold figures.
 
 ---
 
@@ -35,10 +37,11 @@ Predicting Type 2 Diabetes Mellitus (T2DM) and associated clinical outcomes from
 
 **E-GACT** addresses these methodological bottlenecks by integrating:
 1. **Lightweight Tabular Transformer:** For non-linear, intra-patient feature projection.
-2. **FAISS $k$-NN Graph Neural Network (GNN):** For inter-patient topological similarities (Case-Based Reasoning), dynamically constructed in $\mathcal{O}(N \log N)$ time.
+2. **Strictly Inductive $k$-NN Graph via EMA Buffer:** To capture inter-patient topological similarities (Case-Based Reasoning). An Exponential Moving Average (EMA) buffer prevents *representation drift* without incurring full-dataset forward passes, ensuring $\mathcal{O}(N \log N)$ architectural scalability.
 3. **Supervised Contrastive Learning (SCL):** To actively organize the topological latent space and prevent over-smoothing against severe class imbalances.
+4. **Dual-Layer Clinical Explainability:** Unifying Subgraph-Frozen SHAP (feature-level) and Neighbourhood Influence Scores (topology-level) to provide clinically actionable insights.
 
-**Edge AI Compatibility:** With a highly compact footprint of only **0.45M learnable parameters**, E-GACT operates with $<45$ ms inference latency on standard microprocessors. This qualifies the framework for zero-latency, privacy-preserving local Edge AI deployments in resource-constrained primary care environments.
+**Edge AI Compatibility:** With a highly compact footprint of only **0.45M learnable parameters**, E-GACT operates with $<45$ ms inference latency on standard microprocessors, qualifying the framework for zero-latency, privacy-preserving local Edge AI deployments.
 
 ---
 
@@ -46,7 +49,7 @@ Predicting Type 2 Diabetes Mellitus (T2DM) and associated clinical outcomes from
 
 <p align="center">
   <img src="E-GACT Architecture.jpg" width="95%" alt="E-GACT Architecture Diagram">
-  <br><em>Figure 1: Overall workflow of the strictly inductive, leakage-free E-GACT architecture.</em>
+  <br><em>Figure 1: Overall workflow of the strictly inductive, leakage-free E-GACT architecture featuring EMA-based index refresh.</em>
 </p>
 
 ---
@@ -55,64 +58,26 @@ Predicting Type 2 Diabetes Mellitus (T2DM) and associated clinical outcomes from
 
 To demonstrate algorithmic robustness and scalability across varying modalities, E-GACT is evaluated on three globally validated, open-access cohorts:
 
-| Dataset | Modality | Size (Patients) | Focus Area | Target Prediction | E-GACT (ROC-AUC) |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **[NHANES (2017-2018)](https://wwwn.cdc.gov/nchs/nhanes/continuousnhanes/default.aspx?BeginYear=2017)** | Clinical Lab + Demographics | ~6,000 | Physiological Signals | T2DM (HbA1c $\geq$ 6.5) | **0.816** |
-| **[130-US Hospitals](https://archive.ics.uci.edu/dataset/296/diabetes+130-us+hospitals+for+years+1999-2008)** | Electronic Health Records (EHR)| ~101,000 | Case-Based Reasoning | Readmission Risk | **0.662** |
-| **[CDC BRFSS (2015)](https://www.cdc.gov/brfss/annual_data/annual_2015.html)** | Population Survey | ~50,000* | Edge AI Scalability | T2DM (Imbalanced) | **0.832** |
+| Dataset | Modality | Size (Patients) | Focus Area | Target Prediction |
+| :--- | :--- | :--- | :--- | :--- |
+| **[NHANES (2017-2018)](https://wwwn.cdc.gov/nchs/nhanes/continuousnhanes/default.aspx?BeginYear=2017)** | Clinical Lab + Demographics | ~6,000 | Physiological Signals | T2DM (HbA1c $\geq$ 6.5) |
+| **[130-US Hospitals](https://archive.ics.uci.edu/dataset/296/diabetes+130-us+hospitals+for+years+1999-2008)** | Electronic Health Records (EHR)| ~101,000 | Case-Based Reasoning | Readmission Risk |
+| **[CDC BRFSS (2015)](https://www.cdc.gov/brfss/annual_data/annual_2015.html)** | Population Survey | 50,000* | Edge AI Scalability | T2DM |
 
-*\*Note: To ensure stable reproducibility within standard free-tier Cloud environments (e.g., 12GB RAM instances) without memory overflow, the BRFSS cohort is sub-sampled to 50,000 instances for this repository's demonstration.*
+*\*Note on BRFSS:* As stated in the manuscript, the 50,000-patient 1:1 balanced slice of the BRFSS dataset is used specifically to benchmark $\mathcal{O}(N \log N)$ computational scalability without the confounding effects of class imbalance. The predictive performance on the naturally imbalanced BRFSS cohort (14.9% positive rate) is fully reported in **Supplementary Table S1** of the paper.
 
 ---
 
-## 🛠️ Local Installation & Usage
+## 🔍 Dual-Layer Clinical Explainability (XAI)
 
-For researchers wishing to clone and run this framework on local workstations or Edge devices:
+E-GACT strictly avoids the "black-box" paradigm. Computing feature attributions in a Graph Neural Network is inherently complex due to neighborhood contamination (Message Passing). We resolve this via a novel **Dual-Layer** approach:
 
-### 1. Requirements
-Ensure you have Python 3.8+ installed. Install the necessary dependencies:
+1. **Layer 1: Subgraph Freezing SHAP (Feature-Level)**
+   The pipeline automatically freezes the historical graph topology and isolates the target patient's input. It generates high-resolution SHAP summary plots highlighting exactly which physiological factors (e.g., BMI, Age, Glycohemoglobin) drove a specific patient into a high-risk category.
+2. **Layer 2: Neighbourhood Influence Score (Topology-Level)**
+   The pipeline calculates the NIS (Equation 5 in the paper) to explicitly quantify how much the patient's retrieved historical neighbourhood shifted their baseline risk prediction.
 
-```bash
-pip install torch torch-geometric faiss-cpu scikit-learn pandas lightgbm ucimlrepo shap matplotlib seaborn
-```
-### 2. Using E-GACT on Custom Tabular Data
-The modular PyTorch design allows for straightforward integration into custom clinical datasets:
-```python
-import torch
-import torch.nn.functional as F
-from models.egact import EGACT, build_faiss_hnsw_graph
-
-# 1. Initialize the E-GACT Model (0.45M Params)
-model = EGACT(
-    num_cont=15,          # Number of continuous clinical features
-    cat_dims=[4, 2, 7],   # Vocabulary sizes of categorical features
-    d_model=32,           # Latent dimension size
-    n_heads=4             # Attention heads
-)
-
-# Dummy Patient Data (Batch of 256 patients)
-x_cont = torch.randn(256, 15) 
-x_cat = torch.randint(0, 2, (256, 3))
-
-# 2. Intra-Patient Projection (Extract Latent Z)
-z_embeddings = model.get_z_embeddings(x_cont, x_cat)
-
-# 3. Inter-Patient Topology (Build Dynamic FAISS Graph in O(N log N))
-edge_index = build_faiss_hnsw_graph(z_embeddings, k=5, is_inductive=False)
-
-# 4. GNN Aggregation & Hybrid Prediction
-# h: Neighborhood profile, z_scl: Contrastive projection, logits: Final predictions
-h, z_scl, logits = model.gnn_forward(z_embeddings, edge_index)
-```
----
-## 🔍 Clinical Explainability (XAI)
-
-E-GACT strictly avoids the "black-box" paradigm. However, computing SHAP values in a Graph Neural Network is inherently complex due to neighborhood contamination (Message Passing). To resolve this, we introduce the **Subgraph Freezing Approach**.
-
-The provided pipeline autonomously generates and saves high-resolution PDF graphics for:
-
-- **t-SNE Latent Space Visualizations:** Demonstrating how the Supervised Contrastive Loss (SCL) mathematically forces diabetic (red) and healthy (green) patient profiles into distinct topological manifolds.
-- **SHAP Feature Attributions:** Highlighting exactly which physiological factors (e.g., BMI, Age, Prior Admissions) drove a specific patient into the high-risk category, providing clinically actionable insights.
+Additionally, **t-SNE Latent Space Visualizations** are generated to demonstrate how the Supervised Contrastive Loss mathematically forces diabetic and healthy patient profiles into distinct topological manifolds.
 
 ---
 ## 📝 Citation
@@ -125,7 +90,3 @@ If you find this codebase or methodology useful in your research, please conside
   journal={Artificial Intelligence in Medicine - AIM (Submitted)},
   year={2026}
 }
-```
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
