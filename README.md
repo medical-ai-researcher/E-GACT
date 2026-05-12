@@ -88,5 +88,5 @@ If you find this codebase or methodology useful in your research, please conside
   title={Resource-Efficient Graph-Aware Contrastive Transformer (E-GACT) for Early Diabetes Risk Prediction: Bridging Algorithmic Topology and Clinical Explainability},
   author={Anonymous Authors},
   journal={Artificial Intelligence in Medicine - AIM (Submitted)},
-  year={2026}
+  year={under review}
 }
