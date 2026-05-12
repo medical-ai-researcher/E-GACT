@@ -6,7 +6,7 @@
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
   <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.8+-blue.svg" alt="Python 3.8+"></a>
   <a href="https://pytorch.org/"><img src="https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=flat&logo=PyTorch&logoColor=white" alt="PyTorch"></a>
-  <a href="#"><img src="https://img.shields.io/badge/Paper-Artificial Intelligence in Medicine_Submission-green.svg" alt="Paper"></a>
+  <a href="#"><img src="https://img.shields.io/badge/Paper-Artificial Intelligence in Medicine Submission (Under Review)-green.svg" alt="Paper"></a>
 </p>
 
 > **Official Code Repository for the paper:**  
@@ -27,7 +27,7 @@ We deeply respect the time of academic peer-reviewers. To facilitate a seamless 
 3. Click **`Runtime -> Run All`**.
 4. The script will autonomously fetch the raw clinical cohorts, perform strictly inductive leakage-free graph construction, train the E-GACT architecture, compute Neighbourhood Influence Scores (NIS), and output the ROC-AUC benchmarks alongside high-resolution Explainable AI (XAI) figures.
 
-> **📝 Editorial Note on Colab Constraints:** The results reported in the main manuscript (Tables 2 & 3) are derived from a rigorous 5-fold stratified cross-validation on a dedicated high-resource cluster (RTX 4090). To comfortably satisfy Colab's free-tier GPU time and RAM constraints (15GB), this reproducibility notebook utilises a single 80/20 stratified split and reduces the FAISS HNSW inference parameter to $M=16$ (instead of $M=32$). Results obtained here closely approximate, but may marginally differ from, the tabled 5-fold figures.
+> **📝 Editorial Note on Colab Constraints:** The results reported in the main manuscript (Tables 3 & 4) are derived from a rigorous 5-fold stratified cross-validation on a dedicated high-resource cluster (RTX 4090). To comfortably satisfy Colab's free-tier GPU time and RAM constraints (15GB), this reproducibility notebook utilises a single 80/20 stratified split and reduces the FAISS HNSW inference parameter to $M=16$ (instead of $M=32$). Results obtained here closely approximate, but may marginally differ from, the tabled 5-fold figures.
 
 ---
 
