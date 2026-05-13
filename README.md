@@ -29,6 +29,8 @@ We deeply respect the time of academic peer-reviewers. To facilitate a seamless 
 
 > **📝 Editorial Note on Colab Constraints:** The results reported in the main manuscript (Tables 3 & 4) are derived from a rigorous 5-fold stratified cross-validation on a dedicated high-resource cluster (RTX 4090). To comfortably satisfy Colab's free-tier GPU time and RAM constraints (15GB), this reproducibility notebook utilises a single 80/20 stratified split and reduces the FAISS HNSW inference parameter to $M=16$ (instead of $M=32$). Results obtained here closely approximate, but may marginally differ from, the tabled 5-fold figures.
 
+> **🔒 Data Provenance Note (NHANES):** The NHANES dataset hosted on this repository is a direct, unmodified ZIP archive of the original CDC XPT files. It is mirrored here solely to bypass frequent CDC server timeouts and enable zero-click Colab execution for reviewers. The original script used to fetch these files directly from the CDC servers is available in `download_from_cdc.py`.
+
 ---
 
 ## 📖 Overview
