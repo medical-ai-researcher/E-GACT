@@ -10,7 +10,7 @@
 </p>
 
 > **Official Code Repository for the paper:**  
-> *"Resource-Efficient Graph-Aware Contrastive Transformer (E-GACT) for Early Diabetes Risk Prediction: Bridging Algorithmic Topology and Clinical Explainability"* (Submitted to Artificial Intelligence in Medicine - AIM).
+> *"Resource-Efficient Graph-Aware Contrastive Transformer (E-GACT) for Early Diabetes Risk Prediction: Bridging Algorithmic Topology and Clinical Explainability"* (Submitted to Knowledge-Based Systems - KBS).
 
 ---
 
