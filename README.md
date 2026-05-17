@@ -88,7 +88,7 @@ If you find this codebase or methodology useful in your research, please conside
 ```bibtex
 @article{egact_2026,
   title={Resource-Efficient Graph-Aware Contrastive Transformer (E-GACT) for Early Diabetes Risk Prediction: Bridging Algorithmic Topology and Clinical Explainability},
-  author={Anonymous Authors},
+  author={İsa Ataş},
   journal={Knowledge-Based Systems - KBS (Submitted)},
   year={under review}
 }
