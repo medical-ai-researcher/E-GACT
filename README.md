@@ -50,15 +50,6 @@ Predicting Type 2 Diabetes Mellitus (T2DM) and associated clinical outcomes from
 
 ---
 
-## 🏗️ Architecture
-
-<p align="center">
-  <img src="fig_architecture.pdf" width="95%" alt="E-GACT Architecture Diagram">
-  <br><em>Figure 1: E-GACT dual-path framework. Path A (blue): tabular transformer → Z. Path B (green): raw-feature hybrid k-NN graph → GCN → H². Classifier: ℓ₂([Z ‖ H²]) → MLP → prevalence-anchored risk strata.</em>
-</p>
-
----
-
 ## 📊 Results Summary
 
 Evaluated via **5-fold stratified CV** against **8 baselines** (LightGBM, XGBoost, CatBoost, MLP, TabNet, FT-Transformer, SAINT, GraphSAGE) across 3 primary clinical cohorts + 1 balanced control.
