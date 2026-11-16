@@ -10,6 +10,7 @@
 > Submitted to **Artificial Intelligence in Medicine** (Elsevier, IF=7.8, Q1).
 
 ---
+<p align="center"> <img src="architecture.jpg" width="95%" alt="E-GACT Architecture Diagram"> </p>
 
 ## ⚡ Zero-Click Reproducibility (Reviewer Guide)
 
