@@ -88,14 +88,6 @@ NIS(i) = ŷᵢ − mean(ŷ_neighbours). Case vignette: Δtopo=+0.055 elevates bo
 
 ---
 
-## 🖼️ Graphical Abstract
-
-<p align="center">
-  <img src="graphical_abstract.svg" width="100%" alt="E-GACT Graphical Abstract">
-</p>
-
----
-
 ## 📝 Citation
 
 ```bibtex
