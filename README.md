@@ -8,7 +8,7 @@
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=flat&logo=PyTorch&logoColor=white)](https://pytorch.org/)
 [![Paper](https://img.shields.io/badge/Paper-Computer%20Methods%20and%20Programs%20in%20Biomedicine%20%28Under%20Review%29-green.svg)](#)
-
+[![Paper](https://img.shields.io/badge/Paper-Computer%20Methods%20and%20Programs%20in%20Biomedicine%20%28Under%20Review%29-green.svg?style=flat-square)](#)
 > **Official Code Repository for the paper:**  
 > *"Resource-Efficient Graph-Aware Contrastive Transformer (E-GACT) for Early Diabetes Risk Prediction: Bridging Algorithmic Topology and Clinical Explainability"*  
 > Submitted to **Computer Methods and Programs in Biomedicine** (Elsevier, IF=6.4, Q1).
