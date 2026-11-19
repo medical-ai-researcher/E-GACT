@@ -14,6 +14,10 @@
 > Submitted to **Computer Methods and Programs in Biomedicine** (Elsevier, Q1, WoS SCIE)
 
 ---
+## 🖼️ Graphical Abstract
+<p align="center"> <img src="graphical_abstract.png" width="95%" alt="E-GACT Graphical Abstract"> </p>
+
+Left to right: Input cohorts (NHANES, 130-US, BRFSS) → Path A (Tabular Transformer + SCL) → Path B (Hybrid Cosine–Jaccard GNN on raw features) → Classifier (MLP + Platt calibration) → Clinical outputs (risk strata, KernelSHAP, NIS).
 
 ## ⚡ Reproducibility
 
