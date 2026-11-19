@@ -11,7 +11,7 @@
 
 > **Official Code Repository for the paper:**  
 > *"Resource-Efficient Graph-Aware Contrastive Transformer (E-GACT) for Early Diabetes Risk Prediction: Bridging Algorithmic Topology and Clinical Explainability"*  
-> Submitted to **Artificial Intelligence in Medicine** (Elsevier, IF=7.8, Q1).
+> Submitted to **Computer Methods and Programs in Biomedicine** (Elsevier, IF=6.4, Q1).
 
 ---
 
@@ -95,8 +95,8 @@ NIS(i) = ŷᵢ − mean(ŷ_neighbours). Case vignette: Δtopo=+0.055 elevates bo
   title   = {Resource-Efficient Graph-Aware Contrastive Transformer (E-GACT)
              for Early Diabetes Risk Prediction: Bridging Algorithmic
              Topology and Clinical Explainability},
-  author  = {Anonymous Authors},
-  journal = {Artificial Intelligence in Medicine},
+  author  = {İsa Ataş},
+  journal = {Computer Methods and Programs in Biomedicine},
   year    = {under review}
 }
 ```
